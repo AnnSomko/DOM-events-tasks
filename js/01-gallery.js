@@ -4,7 +4,6 @@ const parentGallery = document.querySelector(".gallery");
 const galleryImages = createGallery(galleryItems);
 
 parentGallery.insertAdjacentHTML("beforeend", galleryImages);
-
 parentGallery.addEventListener("click", onImagesClick);
 
 function createGallery(items) {
@@ -30,11 +29,14 @@ function onImagesClick(e) {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  console.log(e.target.dataset.source);
-}
-
-const instance = basicLightbox.create(`
-    <img src="assets/images/image.png" width="800" height="600">
+  const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">
 `);
+  instance.show();
 
-instance.show();
+  window.addEventListener("keydown", function (e) {
+    if (e.code === "Escape") {
+      instance.close();
+    }
+  });
+}
