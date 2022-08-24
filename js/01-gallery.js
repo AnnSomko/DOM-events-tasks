@@ -8,8 +8,8 @@ parentGallery.addEventListener("click", onImagesClick);
 
 function createGallery(items) {
   return items
-    .map(({ preview, original, description }) => {
-      return `
+    .map(
+      ({ preview, original, description }) => `
         <div class="gallery__item">
         <a class="gallery__link" href="large-image.jpg">
           <img
@@ -19,8 +19,8 @@ function createGallery(items) {
             alt= "${description}"
           />
         </a>
-      </div>`;
-    })
+      </div>`
+    )
     .join("");
 }
 
